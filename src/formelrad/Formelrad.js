@@ -10,6 +10,25 @@ export default function Formelrad() {
         r: "",
         p: ""
     })
+    
+    const calculate = (event) => {
+        event.preventDefault();
+        console.log("calculate");
+        if (values.i === "" && values.r === "") {
+            /*calculate i and r */
+            setValues(values => ({...values, i: values.p / values.u}));
+            setValues(values => ({...values, r: values.u * values.u / values.p}));
+        } else if (values.i === "" && values.p === "") {
+            /*calculate i and p */
+            setValues(values => ({...values, i: values.u / values.r}));
+            setValues(values => ({...values, p: values.u * values.u / values.r}));
+        } else {
+            /*calculate r and p */
+            setValues(values => ({...values, r: values.u / values.i}));
+            setValues(values => ({...values, p: values.u * values.i}));
+        }
+    }
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
